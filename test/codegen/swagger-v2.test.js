@@ -18,6 +18,18 @@ describe('Swagger spec v2 generator', function() {
     expect(code.Store).to.be.string;
   });
 
+  it('parse operations', function() {
+    var operations = generator.getOperations(pet2);
+    expect(operations['/pets'].get.returns).to.eql(
+      [{
+        description: 'pet response',
+        type: ['pet'],
+        arg: 'data',
+        root: true,
+      }]
+    );
+  });
+
   it('generates remote methods', function() {
     var code = generator.generateRemoteMethods(pet2,
       { modelName: 'Pet' }).Pet;
@@ -29,6 +41,7 @@ describe('Swagger spec v2 generator', function() {
     expect(code).contain('Pet.remoteMethod(\'deletePet\'');
     expect(code).contain('Pet.create = function(pet, callback)');
     expect(code).contain('Pet.remoteMethod(\'create\'');
+    expect(code).contain('type: [ \'pet\' ],');
   });
 
   it('generates remote methods with tags', function() {

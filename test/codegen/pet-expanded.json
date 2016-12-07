@@ -29,6 +29,7 @@
   "paths": {
     "/pets": {
       "get": {
+        "tags": ["Pet"],
         "description": "Returns all pets from the system that the user has access to",
         "operationId": "Pet.findPets",
         "produces": [
@@ -134,13 +135,13 @@
           "200": {
             "description": "pet response",
             "schema": {
-              "$ref": "Pet"
+              "$ref": "#/definitions/pet"
             }
           },
           "default": {
             "description": "unexpected error",
             "schema": {
-              "$ref": "ErrorModel"
+              "$ref": "#/definitions/errorModel"
             }
           }
         }
