@@ -34,7 +34,7 @@
       "get": {
         "tags": ["Pet"],
         "x-implementation-template":{
-          "$ref": "#x-implementation-templates/find",
+          "$ref": "#/x-implementation-templates/find",
           "parameters": {
             "model": "Pet"
           }
