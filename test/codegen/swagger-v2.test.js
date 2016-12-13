@@ -39,9 +39,13 @@ describe('Swagger spec v2 generator', function() {
     expect(code).contain('Pet.remoteMethod(\'findPetByIdId\'');
     expect(code).contain('Pet.deletePet = function(id, callback)');
     expect(code).contain('Pet.remoteMethod(\'deletePet\'');
-    expect(code).contain('Pet.create = function(pet, callback)');
-    expect(code).contain('Pet.remoteMethod(\'create\'');
+    expect(code).contain('Pet.createPet = function(pet, callback)');
+    expect(code).contain('Pet.remoteMethod(\'createPet\'');
     expect(code).contain('type: [ \'pet\' ],');
+    expect(code).contain(
+      'Pet.find({limit: limit, where: {inq: tags}}, callback);');
+    expect(code).contain('Pet.create(pet, callback);');
+    expect(code).contain('Pet.findById(id, callback);');
   });
 
   it('generates remote methods with tags', function() {

@@ -26,10 +26,19 @@
   "produces": [
     "application/json"
   ],
+  "x-implementation-templates": {
+    "find": "${model}.find({limit: limit, where: {inq: tags}}, callback);"
+  },
   "paths": {
     "/pets": {
       "get": {
         "tags": ["Pet"],
+        "x-implementation-template":{
+          "$ref": "#x-implementation-templates/find",
+          "parameters": {
+            "model": "Pet"
+          }
+        },
         "description": "Returns all pets from the system that the user has access to",
         "operationId": "Pet.findPets",
         "produces": [
@@ -80,7 +89,10 @@
       "post": {
         "description": "Creates a new pet in the store.  Duplicates are allowed",
         "operationId": "addPet",
-        "x-operation-name": "create",
+        "x-operation-name": "createPet",
+        "x-implementation-template" : [
+          "Pet.create(pet, callback);"
+        ],
         "produces": [
           "application/json"
         ],
@@ -115,6 +127,9 @@
       "get": {
         "description": "Returns a user based on a single ID, if the user does not have access to the pet",
         "operationId": "findPetById{id}",
+        "x-implementation-template" : {
+          "loopback": "Pet.findById(id, callback);"
+        },
         "produces": [
           "application/json",
           "application/xml",
