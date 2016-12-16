@@ -55,9 +55,9 @@ describe('Swagger spec v2 generator', function() {
 
   it('transform operations', function() {
     var operations = generator.getOperations(petStoreV2Spec);
-    expect(operations).to.have.property('/user/createWithList');
-    expect(operations['/user/createWithList']).to.have.property('post');
-    var op = operations['/user/createWithList']['post'];
+    expect(operations).to.have.property('/createWithList');
+    expect(operations['/createWithList']).to.have.property('post');
+    var op = operations['/createWithList']['post'];
     expect(op.operationId).to.eql('createUsersWithListInput');
   });
 });
