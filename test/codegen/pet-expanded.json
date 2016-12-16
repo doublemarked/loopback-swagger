@@ -195,20 +195,20 @@
         "type": "string"
       }
     },
-    "petList": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/pet"
-      }
-    },
     "petGroup": {
       "properties": {
         "id": {
           "type": "integer",
           "format": "int64"
-        },
+        }
+      },
+      "x-relations": {
         "pets": {
-          "$ref": "#/definitions/petList"
+          "partner": {
+            "$ref": "#/definitions/pet"
+          },
+          "type": "hasMany",
+          "foreignKey": "groupId"
         }
       }
     },
