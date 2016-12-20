@@ -34,7 +34,9 @@
       "get": {
         "tags": ["Pet"],
         "x-implementation-template":{
-          "$ref": "#/x-implementation-templates/find",
+          "template":{
+            "$ref": "#/x-implementation-templates/find"
+          },
           "parameters": {
             "model": "Pet"
           }
@@ -90,7 +92,7 @@
         "description": "Creates a new pet in the store.  Duplicates are allowed",
         "operationId": "addPet",
         "x-operation-name": "createPet",
-        "x-implementation-template" : [
+        "x-implementation" : [
           "Pet.create(pet, callback);"
         ],
         "produces": [
@@ -236,9 +238,6 @@
           "$ref": "#/definitions/pet"
         },
         {
-          "required": [
-            "name"
-          ],
           "properties": {
             "id": {
               "type": "integer",
